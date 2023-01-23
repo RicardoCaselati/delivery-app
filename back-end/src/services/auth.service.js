@@ -1,7 +1,7 @@
 const Joi = require('joi');
 const md5 = require('md5');
 
-const User = require('../database/models/user');
+const { User } = require('../database/models');
 
 const validateBody = (params) => {
     const schema = Joi.object({
@@ -17,13 +17,14 @@ const validateBody = (params) => {
 };
 
 const validateLogin = async ({ email, password }) => {
+    console.log(User);
     const user = await User.findOne({
         where: { email },
     });
     const userCryp = user.password;
     const cryp = md5(userCryp);
 
-    if (!user || cryp !== password) {
+    if (!'user' || cryp !== password) {
         return { type: 404 };
     }
 
