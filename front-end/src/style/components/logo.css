@@ -1,0 +1,28 @@
+.logo {
+  align-items: center;
+  color: rgb(33, 150, 243);
+  display: flex;
+  font-size: 2rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.rocksGlass {
+  animation: shake 1s infinite ease;
+  width: 9rem;
+}
+
+@keyframes shake {
+
+  0% {
+    transform: rotate(5deg);
+  }
+
+  50% {
+    transform: rotate(-5deg);
+  }
+
+  100% {
+    transform: rotate(5deg);
+  }
+}
