@@ -1,33 +1,32 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class salesProducts extends Model {
-    static associate(models) {
-      models.Sale.belongsToMany(models.Product, {
-        as: 'sales',
-        foreignKey: 'saleId',
-        otherKey: 'productId',
-        through: salesProducts,
-      });
-
-      models.Product.belongsToMany(models.Sale, {
-        as: 'products',
-        foreignKey: 'productId',
-        otherKey: 'saleId',
-        through: salesProducts,
-      });
+  const SaleProductTable = sequelize.define(
+    "SaleProduct",
+    {
+      saleId: DataTypes.INTEGER,
+      productId: DataTypes.INTEGER,
+      quantity: DataTypes.INTEGER,
+    },
+    {
+      tableName: "sales_products",
+      underscored: true,
+      timestamps: false,
     }
-  }
-  salesProducts.init({
-    saleId: DataTypes.INTEGER,
-    productId: DataTypes.INTEGER,
-    quantity: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'salesProducts',
-    underscored: true,
+  );
+
+  SaleProductTable.associate = (({ Sale, Product }) => {
+    Sale.belongsToMany(Product, {
+      as: "products",
+      foreignKey: "saleId",
+      otherKey: "productId",
+      through: SaleProductTable,
+    });
+    Product.belongsToMany(Sale, {
+      as: "sales",
+      foreignKey: "productId",
+      otherKey: "saleId",
+      through: SaleProductTable,
+    });
   });
-  return salesProducts;
+
+  return SaleProductTable;
 };

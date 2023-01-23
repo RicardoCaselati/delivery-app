@@ -10,28 +10,22 @@ const validateBody = (params) => {
     });
     
     const { error, value } = schema.validate(params);
-
     if (error) throw error;
 
     return value;
 };
 
 const validateLogin = async ({ email, password }) => {
-    console.log(User);
     const user = await User.findOne({
         where: { email },
     });
-    const userCryp = user.password;
-    const cryp = md5(userCryp);
 
-    if (!'user' || cryp !== password) {
+    const newPassword = md5(password);
+    if (!user || user.password !== newPassword) {
         return { type: 404 };
     }
 
-    // const { password: _, ...userWithoutPassword } = user.dataValues;
-    // const token = jwtUtil.createToken(userWithoutPassword);
-
-    return 'teste';
+    return {role: user.role, email: user.email};
 };
 
 module.exports = { validateBody, validateLogin };
