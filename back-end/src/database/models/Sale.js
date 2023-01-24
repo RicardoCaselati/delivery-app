@@ -1,25 +1,37 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Sale extends Model {
-    static associate(models) {
-      models.Sale.belongsTo(models.User);
+  const SaleTable = sequelize.define(
+    "Sale",
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      userId: DataTypes.INTEGER,
+      sellerId: DataTypes.INTEGER,
+      totalPrice: DataTypes.DECIMAL(9, 2),
+      deliveryAddress: DataTypes.STRING,
+      deliveryNumber: DataTypes.STRING,
+      saleDate: DataTypes.DATE,
+      status: DataTypes.STRING,
+    },
+    {
+      tableName: "sales",
+      underscored: true,
+      timestamps: false,
     }
-  }
-  Sale.init({
-    user_id: DataTypes.INTEGER,
-    seller_id: DataTypes.INTEGER,
-    total_price: DataTypes.DECIMAL,
-    delivery_address: DataTypes.STRING,
-    delivery_number: DataTypes.STRING,
-    sale_date: DataTypes.DATE,
-    status: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Sale',
-    underscored: true,
-  });
-  return Sale;
+  );
+
+  SaleTable.associate = ({ User }) => {
+    SaleTable.belongsTo(User, {
+      as: "user",
+      foreignKey: "id",
+    });
+    SaleTable.belongsTo(User, {
+      as: "seller",
+      foreignKey: "id",
+    });
+  };
+
+  return SaleTable;
 };
