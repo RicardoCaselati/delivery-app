@@ -28,31 +28,33 @@ export default function RegisterForm() {
           className="input-form"
           placeholder="nome"
           onChange={ ({ target }) => setName(target.value) }
-          data-testid="common_input__input-name"
+          data-testid="common_register__input-name"
         />
         <input
           className="input-form"
           placeholder="email"
           onChange={ ({ target }) => setEmail(target.value) }
           type="email"
-          data-testid="common_input__input-email"
+          data-testid="common_register__input-email"
         />
         <input
           className="input-form"
           placeholder="senha"
           onChange={ ({ target }) => setPassword(target.value) }
           type="password"
-          data-testid="common_input__input-password"
+          data-testid="common_register__input-password"
         />
         <button
           className="input-form"
           id="login-btn"
           disabled={ invalidLogin }
-          data-testid="common_input__button-register"
+          data-testid="common_register__button-register"
           type="submit"
         >
           CADASTRAR
         </button>
+
+        <div data-testid="common_register__element-invalid_register" />
       </form>
     </div>
   );

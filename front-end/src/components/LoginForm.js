@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import '../style/components/form.css';
+import { useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 
 export default function LoginForm() {
   const [invalidLogin, setInvalidLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const pwdMinLength = 6;
@@ -49,15 +52,16 @@ export default function LoginForm() {
           LOGIN
         </button>
 
-        <a
-          href="/register"
+        <button
+          type="button"
           className="register-btn"
-          data-testid="common_login__element-invalid-email"
-          to="/register"
+          data-testid="common_login__button-register"
+          onClick={ () => navigate('/register') }
         >
           Ainda não tenho conta
-        </a>
+        </button>
 
+        <div data-testid="common_login__element-invalid-email" />
       </form>
     </div>
   );
