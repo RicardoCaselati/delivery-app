@@ -8,7 +8,7 @@ const validateBody = (params) => {
         email: Joi.string().email().required(),
         password: Joi.string().required(),
     });
-    
+
     const { error, value } = schema.validate(params);
     if (error) throw error;
 
@@ -25,7 +25,7 @@ const validateLogin = async ({ email, password }) => {
         return { type: 404 };
     }
 
-    return {role: user.role, email: user.email};
+    return { role: user.role, email: user.email };
 };
 
 module.exports = { validateBody, validateLogin };
