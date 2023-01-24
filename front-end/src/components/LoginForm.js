@@ -18,7 +18,8 @@ export default function LoginForm() {
   }, [email, password]);
 
   const handleLogin = (e) => {
-    const ERROR_CODE = 404;
+    const OK_CODE = 200;
+
     e.preventDefault();
     fetch(
       'http://localhost:3001/login',
@@ -28,8 +29,7 @@ export default function LoginForm() {
         body: JSON.stringify({ email, password }),
       },
     ).then((res) => {
-      if (res.status === ERROR_CODE) window.alert('Usuário inexistente');
-      else navigate('/customer/products');
+      if (res.status === OK_CODE) navigate('/customer/products');
     });
   };
 
