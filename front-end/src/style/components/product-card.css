@@ -1,0 +1,32 @@
+.card-product{
+  height: 486px;
+  width: 378px;
+  border: 1px solid #001813;
+}
+
+.product-price{
+  height: 63px;
+  width: 154px;
+  color: #001813;
+  font-weight: bold;
+  background-color: #EAF1EF;
+}
+
+.card-tag{
+  background-color: #B1C2BE;
+}
+
+.card-tag{
+  color: #001813;
+  text-align: center;
+}
+
+.plus-button, .minus-button{
+  background-color: #036B52;
+  color: #F2FFFC;
+  font-weight: bold;
+}
+
+.products img{
+  width: 30%;
+}

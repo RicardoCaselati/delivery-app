@@ -14,7 +14,7 @@ module.exports = {
       price: {
         type: Sequelize.DECIMAL(4, 2),
       },
-      urlImage: {
+      url_image: {
         type: Sequelize.STRING,
       },
       createdAt: {
@@ -26,7 +26,7 @@ module.exports = {
         type: Sequelize.DATE,
       }
     },{
-      underscored: true,
+      // underscored: true,
     });
   },
   async down(queryInterface, Sequelize) {
