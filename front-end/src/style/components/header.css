@@ -1,100 +1,92 @@
 .header {
-  width: 100vw;
+  align-items: center;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  width: 100vw;
 }
 
 .item-1 {
-
-  height: 105px;
-  width: 367px;
-  background-color: #2FC18C;
-  color: #001813;
-  font-weight: bold;
-  display: flex;
   align-items: center;
+  background-color: #2fc18c;
+  color: #001813;
+  display: flex;
+  font-weight: 800;
+  height: 105px;
   justify-content: center;
+  width: 367px;
 }
 
 .item-1:hover {
-
-  height: 101px;
-  width: 359px;
-  background-color: #F2FFFC;
-  color: #036B52;
-  border: 2px solid #036B52;
-  display: flex;
   align-items: center;
+  background-color: #f2fffc;
+  border: 2px solid #036b52;
+  color: #036b52;
+  display: flex;
+  height: 101px;
   justify-content: center;
+  width: 359px;
 }
 
 .item-2 {
-
-  height: 105px;
-  width: 367px;
-  background-color: #036B52;
-  color: #F2FFFC;
-  font-weight: bold;
-  display: flex;
   align-items: center;
+  background-color: #036b52;
+  color: #f2fffc;
+  display: flex;
+  font-weight: 800;
+  height: 105px;
   justify-content: center;
+  width: 367px;
 }
 
 .item-2:hover {
-
-  height: 101px;
-  width: 359px;
-  background-color: #F2FFFC;
-  color: #036B52;
-  border: 2px solid #036B52;
-  display: flex;
   align-items: center;
+  background-color: #f2fffc;
+  border: 2px solid #036b52;
+  color: #036b52;
+  display: flex;
+  height: 101px;
   justify-content: center;
+  width: 359px;
 }
 
 .item-3 {
-
-  height: 105px;
-  width: 100%;
-  font-weight: bold;
-  background-color: #036B52;
-  display: flex;
   align-items: center;
+  background-color: #036b52;
+  display: flex;
+  font-weight: 800;
+  height: 105px;
   justify-content: center;
+  width: 100%;
 }
 
 /* .item-3:hover {
-
-  height: 101px;
-  width: 359px;
-  background-color: #F2FFFC;
-  color: #036B52;
-  border: 2px solid #036B52;
-  display: flex;
   align-items: center;
+  background-color: #F2FFFC;
+  border: 2px solid #036B52;
+  color: #036B52;
+  display: flex;
+  height: 101px;
   justify-content: center;
+  width: 359px;
 } */
 
 .full-name-display {
-  height: 105px;
-  width: 359px;
-  background-color: #421981;
-  color: #F2FFFC;
-  display: flex;
-
-  font-weight: bold;
   align-items: center;
+  background-color: #421981;
+  color: #f2fffc;
+  display: flex;
+  font-weight: bold;
+  height: 105px;
   justify-content: center;
+  width: 359px;
 }
 
 .exit-btn {
-
-  width: 180px;
+  background-color: #056cf9;
+  border-radius: 0;
+  color: #f2fffc;
+  font-weight: 800;
   height: 105px;
   margin: 0;
-  color: #F2FFFC;
-  font-weight: bold;
-  border-radius: 0;
-  background-color: #056CF9;
+  width: 180px;
 }
