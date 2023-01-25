@@ -1,10 +1,26 @@
-// const { productsModel } = require('../models/login.model');
+const md5 = require('md5');
+const { User } = require('../database/models');
 
-const login = async () => {
-//   const result = await productsModel.findByProducts(ALL_PRODUCTS);
-//   return { type: null, message: result };
+const checkIfExists = async ({ name, email }) => {
+    const verifyName = await User.findOne({
+        where: { name },
+    });
+    const verifyEmail = await User.findOne({
+        where: { email },
+    });
+
+    if (verifyName || verifyEmail) {
+        return { type: 404 };
+    }
+
+    return { type: 200 };
+  };
+
+const newUser = async ({ name, email, password }) => {
+  const newPassword = md5(password);
+  await User.create({ name, email, password: newPassword });
 };
 
 module.exports = {
-    login,
+    newUser, checkIfExists,
 };
