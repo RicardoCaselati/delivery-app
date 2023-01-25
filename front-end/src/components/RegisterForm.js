@@ -65,11 +65,10 @@ export default function RegisterForm() {
           data-testid="common_register__input-password"
         />
         <button
-          className="input-form"
-          id="login-btn"
+          className="login-btn"
           disabled={ invalidLogin }
           data-testid="common_register__button-register"
-          type="submit"
+          type="button"
         >
           CADASTRAR
         </button>
