@@ -1,10 +1,10 @@
-.card-product{
+.card-product {
   border: 1px solid #001813;
   height: 486px;
   width: 378px;
 }
 
-.product-price{
+.product-price {
   background-color: #eaf1ef;
   color: #001813;
   font-weight: 800;
@@ -12,21 +12,18 @@
   width: 154px;
 }
 
-.card-tag{
+.card-tag {
   background-color: #b1c2be;
-}
-
-.card-tag{
   color: #001813;
   text-align: center;
 }
 
-.plus-button, .minus-button{
-  color: #f2fffc;
+.plus-button, .minus-button {
   background-color: #036b52;
+  color: #f2fffc; 
   font-weight: 800;
 }
 
-.products img{
+.products img {
   width: 30%;
 }
