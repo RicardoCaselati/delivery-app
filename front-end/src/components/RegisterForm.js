@@ -68,7 +68,7 @@ export default function RegisterForm() {
           className="login-btn"
           disabled={ invalidLogin }
           data-testid="common_register__button-register"
-          type="button"
+          type="submit"
         >
           CADASTRAR
         </button>
