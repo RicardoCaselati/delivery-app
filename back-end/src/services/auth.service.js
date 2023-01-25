@@ -25,7 +25,7 @@ const validateLogin = async ({ email, password }) => {
         return { type: 404 };
     }
 
-    return {role: user.role, email: user.email};
+    return { role: user.role, email: user.email };
 };
 
 module.exports = { validateBody, validateLogin };

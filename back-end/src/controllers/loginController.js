@@ -1,10 +1,15 @@
-// const loginService = require('../services/login.service');
+const loginService = require('../services/login.service');
 
-const login = async (req, res) => 
-    // const { email, password } = req.body;
-    // const result = await loginService.login({ email, password });
-     res.status(400).json({ message: 'Respost' });
-    // if (result.type === 400) return res.status(400).json({ message: 'Invalid fields' });
-    // res.status(200).json({ result });
+const newUser = async (req, res) => {
+    const { name, email, password } = req.body;
+    const checkIfExists = await loginService.checkIfExists({ name, email });
+    if (checkIfExists.type === 404) {
+        return res.status(409).json({ message: 'Email or password already exist' });
+}
+    if (checkIfExists.type === 200) {
+        await loginService.newUser({ name, email, password });
+        return res.status(201).json({ message: 'Successfully registered user' });
+    }
+};
 
-module.exports = { login };
+module.exports = { newUser };
