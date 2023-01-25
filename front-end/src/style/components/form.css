@@ -49,6 +49,15 @@
   transition: 0.2s;
 }
 
+.login-btn:disabled {
+  background-color: gray;
+  color: rgb(206, 206, 206);
+}
+
+.login-btn:disabled:hover {
+  color: rgb(217, 217, 217);
+}
+
 .register-btn {
   background-color: rgb(110, 110, 110);
   color: white;
