@@ -54,6 +54,9 @@
   color: rgb(206, 206, 206);
 }
 
+.login-btn:disabled:hover {
+  color: rgb(217, 217, 217);
+}
 
 .register-btn {
   background-color: rgb(110, 110, 110);
