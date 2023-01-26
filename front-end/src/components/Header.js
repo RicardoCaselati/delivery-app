@@ -1,7 +1,16 @@
 import React from 'react';
 import '../style/components/header.css';
+import { useNavigate } from 'react-router-dom';
+import { string } from 'prop-types';
 
-export default function Header() {
+export default function Header({ name }) {
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    navigate('/login');
+    localStorage.removeItem('user');
+  }
+
   return (
     <header className="header">
       <div
@@ -24,10 +33,11 @@ export default function Header() {
         className="full-name-display"
         data-testid="customer_products__element-navbar-user-full-name"
       >
-        Cicrano da Silva
+        { name }
       </div>
       <button
         className="exit-btn"
+        onClick={ handleLogout }
         data-testid="customer_products__element-navbar-link-logout"
         type="button"
       >
@@ -36,3 +46,7 @@ export default function Header() {
     </header>
   );
 }
+
+Header.propTypes = {
+  name: string,
+}.isRequired;

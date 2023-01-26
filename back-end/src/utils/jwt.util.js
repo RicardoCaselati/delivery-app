@@ -1,7 +1,9 @@
 require('dotenv/config');
 const jwt = require('jsonwebtoken');
+const path = require('path');
 
-const secret = process.env.JWT_SECRET || 'secret_key';
+const secret = require('fs')
+.readFileSync(path.resolve(__dirname, '../../jwt.evaluation.key'), { encoding: 'utf-8' });
 
 const createToken = (data) => {
     const token = jwt.sign({ data }, secret, {
@@ -14,14 +16,15 @@ const createToken = (data) => {
 
 const validateToken = (token) => {
     try {
-        const { data } = jwt.verify(token, secret);
+        const validToken = jwt.verify(token, secret);
 
-        return data;
+        return validToken;
     } catch (error) {
-        return { type: 400 };
+        return false;
     }
 };
 
 module.exports = {
-    createToken, validateToken,
+    createToken, 
+    validateToken,
 };

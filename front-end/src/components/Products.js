@@ -10,7 +10,7 @@ export default function ProductCard({ id, name, price, urlImage }) {
           className="product-price"
           data-testid={ `customer_products__element-card-price-${id}` }
         >
-          {`R$${price}`}
+          {`${JSON.stringify(price).replace('.', ',')}`}
         </p>
         <img
           className="product-img"
@@ -35,6 +35,7 @@ export default function ProductCard({ id, name, price, urlImage }) {
           <input
             type="number"
             className="qtt-field"
+            defaultValue={ 0 }
             data-testid={ `customer_products__input-card-quantity-${id}` }
           />
           <button

@@ -19,7 +19,7 @@ export default function LoginForm() {
 
   const handleLogin = (e) => {
     const OK_CODE = 200;
-
+    let status;
     e.preventDefault();
     fetch(
       'http://localhost:3001/login',
@@ -29,7 +29,13 @@ export default function LoginForm() {
         body: JSON.stringify({ email, password }),
       },
     ).then((res) => {
-      if (res.status === OK_CODE) navigate('/customer/products');
+      status = res.status;
+      return res.json();
+    }).then((json) => {
+      if (status === OK_CODE) {
+        localStorage.setItem('user', JSON.stringify(json));
+        navigate('/customer/products');
+      }
     });
   };
 
