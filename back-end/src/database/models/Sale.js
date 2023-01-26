@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       userId: DataTypes.INTEGER,
       sellerId: DataTypes.INTEGER,
-      totalPrice: DataTypes.DECIMAL(9, 2),
+      totalPrice: DataTypes.DECIMAL(4, 2),
       deliveryAddress: DataTypes.STRING,
       deliveryNumber: DataTypes.STRING,
       saleDate: DataTypes.DATE,
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       tableName: 'sales',
       underscored: true,
-      // timestamps: false,
+      timestamps: false,
     }
   );
 
