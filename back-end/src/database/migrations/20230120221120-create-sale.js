@@ -6,7 +6,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       user_id: {
         type: Sequelize.INTEGER,
@@ -23,25 +23,20 @@ module.exports = {
         }
       },
       total_price: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DECIMAL(4, 2),
       },
       delivery_address: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       delivery_number: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       sale_date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+      status: {
+        type: Sequelize.STRING,
       },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
     },{
       underscored: true,
     });
