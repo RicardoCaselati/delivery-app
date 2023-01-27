@@ -112,6 +112,7 @@ export default function CheckoutP() {
         <button
           type="button"
           data-testid="customer_checkout__button-submit-order"
+          // onClick={()}
         >
           Finalizar pedido
         </button>
