@@ -5,6 +5,7 @@ import Login from './components/LoginForm';
 import './style/app.css';
 import Home from './pages/Home';
 import Products from './pages/Products';
+import CheckoutP from './pages/CheckoutP';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/login" element={ <Login /> } />
         <Route path="/register" element={ <Register /> } />
         <Route path="/customer/products" element={ <Products /> } />
+        <Route path="/customer/checkout" element={ <CheckoutP /> } />
       </Routes>
     </BrowserRouter>
   );

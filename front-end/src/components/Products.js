@@ -1,9 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { string, number, func } from 'prop-types';
 import '../style/components/product-card.css';
 
-export default function ProductCard({ id, name, price, urlImage, setTotalPrice }) {
+export default function ProductCard(
+  { id, name, price, urlImage, setTotalPrice, cartProducts, setCartProducts },
+) {
   const [productQty, setProductQty] = useState(0);
+
+  useEffect(() => {
+    const aux = { id, name, qty: productQty, price, totalPrice: productQty * price };
+
+    if (productQty >= 1) {
+      const aux2 = cartProducts.filter((product) => product.name !== name);
+      setCartProducts([...aux2, aux]);
+    } else if (productQty !== 0) {
+      setCartProducts([...cartProducts, aux]);
+    }
+  }, [productQty]);
+
+  useEffect(() => console.log(cartProducts), [cartProducts]);
 
   const removeItemfromCart = () => {
     if (productQty > 0) {

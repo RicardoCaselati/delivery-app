@@ -8,6 +8,7 @@ export default function ProductsPage() {
   const [products, setProducts] = useState();
   const [userName, setUserName] = useState('');
   const [totalPrice, setTotalPrice] = useState(0);
+  const [cartProducts, setCartProducts] = useState([]);
 
   const STATUS_ERROR_CODE = 403;
 
@@ -20,6 +21,7 @@ export default function ProductsPage() {
         if (res.status === STATUS_ERROR_CODE) navigate('/login');
         else {
           setUserName(user.name);
+          localStorage.setItem('username', user.name);
 
           fetch(
             'http://localhost:3001/products',
@@ -28,6 +30,12 @@ export default function ProductsPage() {
       });
     }
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cartProducts));
+    localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
+  }, [cartProducts]);
+
   return (
     <div>
       <Header name={ userName } />
@@ -41,6 +49,8 @@ export default function ProductsPage() {
               urlImage={ urlImage }
               totalPrice={ totalPrice }
               setTotalPrice={ setTotalPrice }
+              cartProducts={ cartProducts }
+              setCartProducts={ setCartProducts }
             />
           </div>
         ),
