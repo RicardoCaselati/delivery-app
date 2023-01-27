@@ -1,8 +1,34 @@
-import React from 'react';
-import { string, number } from 'prop-types';
+import React, { useState } from 'react';
+import { string, number, func } from 'prop-types';
 import '../style/components/product-card.css';
 
-export default function ProductCard({ id, name, price, urlImage }) {
+export default function ProductCard({ id, name, price, urlImage, setTotalPrice }) {
+  const [productQty, setProductQty] = useState(0);
+
+  const removeItemfromCart = () => {
+    if (productQty > 0) {
+      setTotalPrice((prev) => Number(prev) - Number(price));
+      setProductQty((prev) => Number(prev) - 1);
+    }
+  };
+
+  const addItemToCart = () => {
+    setTotalPrice((prev) => prev + Number(price));
+    setProductQty((prev) => prev + 1);
+  };
+
+  const handleInputItems = (qty) => {
+    if (qty === 0) {
+      const aux = productQty * price;
+      setTotalPrice((prev) => prev - aux);
+      setProductQty(0);
+    } else {
+      const aux = price * (qty - productQty);
+      setTotalPrice((prev) => prev + aux);
+      setProductQty(qty);
+    }
+  };
+
   return (
     <div className="products">
       <div className="card-product">
@@ -29,19 +55,23 @@ export default function ProductCard({ id, name, price, urlImage }) {
             className="minus-button"
             data-testid={ `customer_products__button-card-rm-item-${id}` }
             type="button"
+            onClick={ removeItemfromCart }
           >
             -
           </button>
           <input
             type="number"
+            min={ 0 }
             className="qtt-field"
-            defaultValue={ 0 }
+            value={ productQty }
+            onChange={ ({ target }) => handleInputItems(target.value) }
             data-testid={ `customer_products__input-card-quantity-${id}` }
           />
           <button
             className="plus-button"
             data-testid={ `customer_products__button-card-add-item-${id}` }
             type="button"
+            onClick={ addItemToCart }
           >
             +
           </button>
@@ -57,4 +87,6 @@ ProductCard.propTypes = {
   name: string,
   price: number,
   urlImage: number,
+  totalPrice: number,
+  setTotalPrice: func,
 }.isRequired;

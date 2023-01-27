@@ -7,6 +7,8 @@ import Header from '../components/Header';
 export default function ProductsPage() {
   const [products, setProducts] = useState();
   const [userName, setUserName] = useState('');
+  const [totalPrice, setTotalPrice] = useState(0);
+
   const STATUS_ERROR_CODE = 403;
 
   const navigate = useNavigate();
@@ -37,11 +39,13 @@ export default function ProductsPage() {
               name={ name }
               price={ price }
               urlImage={ urlImage }
+              totalPrice={ totalPrice }
+              setTotalPrice={ setTotalPrice }
             />
           </div>
         ),
       )}
-      <Checkout />
+      <Checkout totalPrice={ totalPrice } />
     </div>
   );
 }
