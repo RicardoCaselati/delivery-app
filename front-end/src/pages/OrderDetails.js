@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { number } from 'prop-types';
 import Header from '../components/Header';
 
-export default function OrderDetails({
-  orderId,
-  saleDate,
-  status,
-}) {
+export default function OrderDetails() {
   const [username, setUsername] = useState('');
   const [products, setProducts] = useState([]);
+  const [orderId, setOrderId] = useState('');
+  const [status, setStatus] = useState('');
+  const [saleDate, setSaleDate] = useState('');
+  const [sellerName, setSellerName] = useState('');
+
   const totalPrice = JSON.parse(localStorage.getItem('totalPrice'));
   // const objectCheckout = JSON.parse(localStorage.getItem('checkoutObj'));
 
@@ -19,8 +20,17 @@ export default function OrderDetails({
     const cart = JSON.parse(localStorage.getItem('cart'));
     setProducts(cart);
 
-    // const total = JSON.parse(localStorage.getItem('totalPrice'));
-    // setTotalPrice(total);
+    const idOrder = localStorage.getItem('orderId');
+    setOrderId(idOrder);
+
+    const orderStatus = localStorage.getItem('status');
+    setStatus(orderStatus);
+
+    const orderSaleDate = localStorage.getItem('saleDate');
+    setSaleDate(orderSaleDate);
+
+    const orderSellerName = localStorage.getItem('sellerName');
+    setSellerName(orderSellerName);
   }, []);
 
   const dataTestId = 'customer_order_details__element-order-details-label';
@@ -37,7 +47,7 @@ export default function OrderDetails({
         <p
           data-testid="customer_order_details__element-order-details-label-seller-name"
         >
-          P. Vend: nome
+          { `P. Vend: ${sellerName}` }
         </p>
         <div
           data-testid={ `${dataTestId}-order-date` }

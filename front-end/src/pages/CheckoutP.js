@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
-import OrderDetails from './OrderDetails';
 
 export default function CheckoutP() {
   const [username, setUsername] = useState('');
@@ -10,8 +9,8 @@ export default function CheckoutP() {
   // const [sellerId,setSellerId] = useState('');
   const [deliveryAddress, setDeliveryAddress] = useState('');
   const [DeliveryNumber, setDeliveryNumber] = useState('');
-
-  const STATUS_ERROR_CODE = 403;
+  const [sellers, setSellers] = useState([]);
+  const [sellerName, setSellerName] = useState('');
 
   useEffect(() => {
     const name = localStorage.getItem('username');
@@ -22,6 +21,13 @@ export default function CheckoutP() {
 
     const total = JSON.parse(localStorage.getItem('totalPrice'));
     setTotalPrice(total);
+
+    fetch(
+      'http://localhost:3001/sellers',
+    ).then((res2) => res2.json()).then((json) => {
+      setSellers(json.message);
+      setSellerName(json.message[0].name);
+    });
   }, []);
 
   const removeItem = (name) => {
@@ -43,37 +49,37 @@ export default function CheckoutP() {
     const cart = JSON.parse(localStorage.getItem('cart'));
     const userId = user.id;
     const sellerId = 2;
-    if (user) {
-      fetch(`http://localhost:3001/login/validate/${user.token}`).then((res) => {
-        if (res.status === STATUS_ERROR_CODE) navigate('/login');
-        else {
-          fetch(
-            'http://localhost:3001/sales',
-            {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                userId,
-                sellerId,
-                totalPrice,
-                cart,
-                deliveryAddress,
-                DeliveryNumber,
-              }),
-            },
-          ).then((res2) => res2.json()).then((json) => {
-            if (json) {
-              <OrderDetails
-                orderId={ json.message.id }
-                saleDate={ json.message.saleDate }
-                status={ json.message.status }
-              />;
-              navigate(`/customer/orders/${json.message.id}`);
-            }
-          });
-        }
-      }, []);
-    }
+    // if (user) {
+    //   fetch(`http://localhost:3001/login/validate/${user.token}`).then((res) => {
+    //     if (res.status === STATUS_ERROR_CODE) navigate('/login');
+    //     else {
+    fetch(
+      'http://localhost:3001/sales',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userId,
+          sellerId,
+          totalPrice,
+          cart,
+          deliveryAddress,
+          DeliveryNumber,
+        }),
+      },
+    ).then((res2) => res2.json()).then((json) => {
+      if (json) {
+        localStorage.setItem('orderId', json.message.id);
+        localStorage.setItem('status', json.message.status);
+        localStorage.setItem('saleDate', json.message.saleDate);
+        console.log(sellerName);
+        localStorage.setItem('sellerName', sellerName);
+        navigate(`/customer/orders/${json.message.id}`);
+      }
+    });
+    //       }
+    //     }, []);
+    //   }
   };
 
   return (
@@ -153,7 +159,16 @@ export default function CheckoutP() {
         <select
           aria-label="seller"
           data-testid="customer_checkout__select-seller"
-        />
+          onChange={ ({ target }) => setSellerName(target.value) }
+        >
+          {sellers.map((eachSeller, index) => (
+            <option
+              key={ index }
+              value={ eachSeller.name }
+            >
+              {eachSeller.name}
+            </option>))}
+        </select>
         <input
           data-testid="customer_checkout__input-address"
           onChange={ ({ target }) => setDeliveryAddress(target.value) }
