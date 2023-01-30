@@ -32,7 +32,10 @@ export default function LoginForm() {
       status = res.status;
       return res.json();
     }).then((json) => {
-      if (status === OK_CODE) {
+      if (email === 'adm@deliveryapp.com') {
+        localStorage.setItem('admin', JSON.stringify(json));
+        navigate('/admin/manage');
+      } else if (status === OK_CODE) {
         localStorage.setItem('user', JSON.stringify(json));
         navigate('/customer/products');
       }

@@ -6,6 +6,7 @@ import './style/app.css';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import CheckoutP from './pages/CheckoutP';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/register" element={ <Register /> } />
         <Route path="/customer/products" element={ <Products /> } />
         <Route path="/customer/checkout" element={ <CheckoutP /> } />
+        <Route path="/admin/manage" element={ <Admin /> } />
       </Routes>
     </BrowserRouter>
   );
