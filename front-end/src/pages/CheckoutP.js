@@ -75,6 +75,7 @@ export default function CheckoutP() {
         localStorage.setItem('saleDate', json.message.saleDate);
         console.log(sellerName);
         localStorage.setItem('sellerName', sellerName);
+        console.log(json);
         navigate(`/customer/orders/${json.message.id}`);
       }
     });

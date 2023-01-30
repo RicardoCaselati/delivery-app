@@ -11,6 +11,16 @@ export default function Header({ name }) {
     localStorage.removeItem('user');
   }
 
+  function routeToOrders() {
+    navigate('/customer/orders');
+    fetch(
+      'http://localhost:3001/sellers',
+    ).then((res2) => res2.json()).then((json) => {
+      setSellers(json.message);
+      setSellerName(json.message[0].name);
+    });
+  }
+
   return (
     <header className="header">
       <div
@@ -21,6 +31,7 @@ export default function Header({ name }) {
       </div>
       <div
         className="item-2"
+        onClick={ routeToOrders }
         data-testid="customer_products__element-navbar-link-orders"
       >
         MEUS PEDIDOS
