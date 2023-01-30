@@ -18,7 +18,7 @@ export default function ProductCard(
     }
   }, [productQty]);
 
-  useEffect(() => console.log(cartProducts), [cartProducts]);
+  // useEffect(() => console.log(cartProducts), [cartProducts]);
 
   const removeItemfromCart = () => {
     if (productQty > 0) {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
+import OrderDetails from './OrderDetails';
 
 export default function CheckoutP() {
   const [username, setUsername] = useState('');
@@ -60,11 +61,14 @@ export default function CheckoutP() {
                 DeliveryNumber,
               }),
             },
-            console.log(cart),
           ).then((res2) => res2.json()).then((json) => {
             if (json) {
+              <OrderDetails
+                orderId={ json.message.id }
+                saleDate={ json.message.saleDate }
+                status={ json.message.status }
+              />;
               navigate(`/customer/orders/${json.message.id}`);
-              localStorage.setItem('checkoutObj', JSON.stringify(json));
             }
           });
         }

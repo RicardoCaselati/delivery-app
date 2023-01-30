@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { number } from 'prop-types';
 import Header from '../components/Header';
 
-export default function OrderDetails() {
+export default function OrderDetails({
+  orderId,
+  saleDate,
+  status,
+}) {
   const [username, setUsername] = useState('');
   const [products, setProducts] = useState([]);
-  const objectCheckout = JSON.parse(localStorage.getItem('checkoutObj'));
+  const totalPrice = JSON.parse(localStorage.getItem('totalPrice'));
+  // const objectCheckout = JSON.parse(localStorage.getItem('checkoutObj'));
 
   useEffect(() => {
     const name = localStorage.getItem('username');
@@ -13,8 +19,8 @@ export default function OrderDetails() {
     const cart = JSON.parse(localStorage.getItem('cart'));
     setProducts(cart);
 
-    const total = JSON.parse(localStorage.getItem('totalPrice'));
-    setTotalPrice(total);
+    // const total = JSON.parse(localStorage.getItem('totalPrice'));
+    // setTotalPrice(total);
   }, []);
 
   const dataTestId = 'customer_order_details__element-order-details-label';
@@ -26,7 +32,7 @@ export default function OrderDetails() {
         <p
           data-testid="customer_order_details__element-order-details-label-order-<id>"
         >
-          {`Pedido${objectCheckout.id}`}
+          {`Pedido${orderId}`}
         </p>
         <p
           data-testid="customer_order_details__element-order-details-label-seller-name"
@@ -36,12 +42,12 @@ export default function OrderDetails() {
         <div
           data-testid={ `${dataTestId}-order-date` }
         >
-          07/04/2021
+          { saleDate }
         </div>
         <div
           data-testid={ `${dataTestId}'-delivery-status'` }
         >
-          entregue
+          { status }
         </div>
         <div
           data-testid="customer_order_details__button-delivery-check"
@@ -68,7 +74,6 @@ export default function OrderDetails() {
             <th>Quantidade</th>
             <th>Valor Unitário</th>
             <th>Sub-total</th>
-            <th>Remover item</th>
           </tr>
         </thead>
         <tbody>
@@ -121,3 +126,9 @@ export default function OrderDetails() {
     </div>
   );
 }
+
+OrderDetails.propTypes = {
+  orderId: number,
+  saleDate: number,
+  status: number,
+}.isRequired;
