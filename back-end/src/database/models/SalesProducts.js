@@ -2,14 +2,18 @@ module.exports = (sequelize, DataTypes) => {
   const SaleProductTable = sequelize.define(
     "SaleProduct",
     {
-      saleId: DataTypes.INTEGER,
+      saleId: {
+        allowNull: false,
+        primaryKey: true,
+        type: DataTypes.INTEGER,
+      },
       productId: DataTypes.INTEGER,
       quantity: DataTypes.INTEGER,
     },
     {
       tableName: "sales_products",
       underscored: true,
-      // timestamps: false,
+      timestamps: false,
     }
   );
 
