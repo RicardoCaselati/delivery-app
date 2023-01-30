@@ -4,7 +4,7 @@ import Header from '../components/Header';
 export default function OrderDetails() {
   const [username, setUsername] = useState('');
   const [products, setProducts] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const objectCheckout = JSON.parse(localStorage.getItem('checkoutObj'));
 
   useEffect(() => {
     const name = localStorage.getItem('username');
@@ -17,28 +17,37 @@ export default function OrderDetails() {
     setTotalPrice(total);
   }, []);
 
+  const dataTestId = 'customer_order_details__element-order-details-label';
   return (
     <div>
-      <Header name={username} />
+      <Header name={ username } />
       <h2>Detalhe do Pedido</h2>
       <div>
         <p
-          data-testid={
-            `customer_order_details__element-order-details-label-order-${id}`
-          }
+          data-testid="customer_order_details__element-order-details-label-order-<id>"
         >
-          Pedido 0003;
+          {`Pedido${objectCheckout.id}`}
         </p>
         <p
-          data-testid={
-            "customer_order_details__element-order-details-label-seller-name"
-          }
+          data-testid="customer_order_details__element-order-details-label-seller-name"
         >
           P. Vend: nome
         </p>
-        <div>07/04/2021</div>
-        <div>entregue</div>
-        <div>marcar como entregue</div>
+        <div
+          data-testid={ `${dataTestId}-order-date` }
+        >
+          07/04/2021
+        </div>
+        <div
+          data-testid={ `${dataTestId}'-delivery-status'` }
+        >
+          entregue
+        </div>
+        <div
+          data-testid="customer_order_details__button-delivery-check"
+        >
+          marcar como entregue
+        </div>
       </div>
       {/* <table>
         <thead>
@@ -64,7 +73,7 @@ export default function OrderDetails() {
         </thead>
         <tbody>
           {products.map((product, index) => (
-            <tr key={product.id}>
+            <tr key={ product.id }>
               <td
                 data-testid={
                   `customer_order_details__element-order-table-item-number-${index}`

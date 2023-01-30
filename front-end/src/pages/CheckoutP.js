@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 
 export default function CheckoutP() {
   const [username, setUsername] = useState('');
   const [products, setProducts] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  // const [sellerId,setSellerId] = useState('');
+  const [deliveryAddress, setDeliveryAddress] = useState('');
+  const [DeliveryNumber, setDeliveryNumber] = useState('');
+
+  const STATUS_ERROR_CODE = 403;
 
   useEffect(() => {
     const name = localStorage.getItem('username');
@@ -27,6 +33,43 @@ export default function CheckoutP() {
     const aux3 = totalPrice - (aux.qty * aux.price);
     setTotalPrice(aux3);
     localStorage.setItem('totalPrice', JSON.stringify(aux3));
+  };
+
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    const userId = user.id;
+    const sellerId = 2;
+    if (user) {
+      fetch(`http://localhost:3001/login/validate/${user.token}`).then((res) => {
+        if (res.status === STATUS_ERROR_CODE) navigate('/login');
+        else {
+          fetch(
+            'http://localhost:3001/sales',
+            {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                userId,
+                sellerId,
+                totalPrice,
+                cart,
+                deliveryAddress,
+                DeliveryNumber,
+              }),
+            },
+            console.log(cart),
+          ).then((res2) => res2.json()).then((json) => {
+            if (json) {
+              navigate(`/customer/orders/${json.message.id}`);
+              localStorage.setItem('checkoutObj', JSON.stringify(json));
+            }
+          });
+        }
+      }, []);
+    }
   };
 
   return (
@@ -107,12 +150,18 @@ export default function CheckoutP() {
           aria-label="seller"
           data-testid="customer_checkout__select-seller"
         />
-        <input data-testid="customer_checkout__input-address" />
-        <input data-testid="customer_checkout__input-address-number" />
+        <input
+          data-testid="customer_checkout__input-address"
+          onChange={ ({ target }) => setDeliveryAddress(target.value) }
+        />
+        <input
+          data-testid="customer_checkout__input-address-number"
+          onChange={ ({ target }) => setDeliveryNumber(target.value) }
+        />
         <button
           type="button"
           data-testid="customer_checkout__button-submit-order"
-          // onClick={()}
+          onClick={ () => handleCheckout() }
         >
           Finalizar pedido
         </button>
