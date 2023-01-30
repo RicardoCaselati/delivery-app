@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const md5 = require('md5');
+const jwtUtil = require('../utils/jwt.util');
 
 const { User } = require('../database/models');
 
@@ -25,7 +26,11 @@ const validateLogin = async ({ email, password }) => {
         return { type: 404 };
     }
 
-    return { role: user.role, email: user.email };
+    const userNotPassword = user.dataValues;
+    const { password: _, ...userWithoutPassword } = userNotPassword;
+    const token = jwtUtil.createToken(userWithoutPassword);
+
+    return {id: user.id, name: user.name, email: user.email, role: user.role, token };
 };
 
 module.exports = { validateBody, validateLogin };
