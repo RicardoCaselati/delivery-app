@@ -47,6 +47,7 @@ export default function CheckoutP() {
   const handleCheckout = () => {
     const user = JSON.parse(localStorage.getItem('user'));
     const cart = JSON.parse(localStorage.getItem('cart'));
+    const { token } = JSON.parse(localStorage.getItem('user'));
     const userId = user.id;
     const sellerId = 2;
     // if (user) {
@@ -57,7 +58,7 @@ export default function CheckoutP() {
       'http://localhost:3001/sales',
       {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', authorization: token },
         body: JSON.stringify({
           userId,
           sellerId,
