@@ -7,6 +7,7 @@ const createSale = async (req, res) => {
       totalPrice: req.body.totalPrice,
       deliveryAddress: req.body.deliveryAddress,
       deliveryNumber: req.body.deliveryNumber,
+      cart: req.body.cart,
       saleDate: new Date(),
     };
 
