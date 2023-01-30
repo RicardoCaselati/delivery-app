@@ -22,7 +22,7 @@ const createSale = async (req, res) => {
     if (saleCreated.type === 500) {
         return res.status(500).json(saleCreated.message);
     }
-    res.status(201).json({ message: saleCreated.message });
+    res.status(201).json(saleCreated.message);
 };
 
 module.exports = { createSale };

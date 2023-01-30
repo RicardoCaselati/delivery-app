@@ -70,12 +70,12 @@ export default function CheckoutP() {
       },
     ).then((res2) => res2.json()).then((json) => {
       if (json) {
-        localStorage.setItem('orderId', json.message.id);
-        localStorage.setItem('status', json.message.status);
-        localStorage.setItem('saleDate', json.message.saleDate);
+        localStorage.setItem('orderId', json.id);
+        localStorage.setItem('status', json.status);
+        localStorage.setItem('saleDate', json.saleDate);
         console.log(sellerName);
         localStorage.setItem('sellerName', sellerName);
-        navigate(`/customer/orders/${json.message.id}`);
+        navigate(`/customer/orders/${json.id}`);
       }
     });
     //       }
