@@ -1,0 +1,12 @@
+.main {
+  align-items: center;
+  column-gap: 1.5rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.products-body {
+  background-color: rgb(63, 61, 61);
+}

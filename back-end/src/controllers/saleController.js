@@ -18,4 +18,10 @@ const createSale = async (req, res) => {
     res.status(201).json({ message: saleCreated.message });
 };
 
-module.exports = { createSale };
+const getById = async (req, res) => {
+  const { id } = req.params;
+  const { type, message } = await saleService.getById(id);
+  res.status(type || 200).json({ message });
+};
+
+module.exports = { createSale, getById };
