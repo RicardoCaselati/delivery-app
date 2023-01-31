@@ -32,12 +32,14 @@ export default function LoginForm() {
       status = res.status;
       return res.json();
     }).then((json) => {
-      if (email === 'adm@deliveryapp.com') {
-        localStorage.setItem('admin', JSON.stringify(json));
-        navigate('/admin/manage');
-      } else if (status === OK_CODE) {
-        localStorage.setItem('user', JSON.stringify(json));
-        navigate('/customer/products');
+      if (status === OK_CODE) {
+        if (json.role === 'administrator') {
+          localStorage.setItem('admin', JSON.stringify(json));
+          navigate('/admin/manage');
+        } else if (json.role === 'customer') {
+          localStorage.setItem('user', JSON.stringify(json));
+          navigate('/customer/products');
+        }
       }
     });
   };

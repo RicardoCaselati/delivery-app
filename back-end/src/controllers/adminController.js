@@ -1,5 +1,6 @@
 const md5 = require('md5');
 const userService = require('../services/users.service');
+const { validateToken } = require('../utils/jwt.util.js');
 
 const listUsers = async (_req, res) => {
   const users = await userService.listUsers();
@@ -9,6 +10,11 @@ const listUsers = async (_req, res) => {
 
 const addUser = async (req, res) => {
   const { name, email, password, role } = req.body;
+  const authorizariton = req.header('authorization');
+
+  const { data } = validateToken(authorizariton);
+  if (!data) return res.status(409).json({ message: 'Invalid token' });
+  else if (data.role !== 'administrator') return res.status(409).json({ message: 'User not authorized' });
 
   const users = await userService.listUsers();
 

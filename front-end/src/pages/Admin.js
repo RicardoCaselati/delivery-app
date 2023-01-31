@@ -7,10 +7,10 @@ export default function Admin() {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
   const [invalidUser, setInvalidUser] = useState(true);
-  const [userExists, setUserExists] = useState(false);
+  const [invalidRegister, setInvalidRegister] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:3001/users').then((response) => response.json()).then((json) => setUsers(json));
+    fetch('http://localhost:3001/admin/list-users').then((response) => response.json()).then((json) => setUsers(json));
   }, []);
 
   useEffect(() => {
@@ -23,19 +23,19 @@ export default function Admin() {
 
   const addNewUser = (e) => {
     e.preventDefault();
-    const { token } = JSON.parse(localStorage.getItem('user'));
+    const { token } = JSON.parse(localStorage.getItem('admin'));
 
-    fetch('http://localhost:3001/users/add', {
+    fetch('http://localhost:3001/admin/add-user', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', jrjryk: token },
+      headers: { 'Content-Type': 'application/json', authorization: token },
       body: JSON.stringify({ name, email, password, role }),
     }).then((response) => {
       const CONFLICT_CODE = 409;
       const NEW_USER_CODE = 201;
       console.log(response);
-      if (response.status === CONFLICT_CODE) setUserExists(true);
+      if (response.status === CONFLICT_CODE) setInvalidRegister(true);
       else if (response.status === NEW_USER_CODE) {
-        fetch('http://localhost:3001/users').then((res) => res.json()).then((json) => setUsers(json));
+        fetch('http://localhost:3001/admin/list-users').then((res) => res.json()).then((json) => setUsers(json));
       }
     });
   };
@@ -78,7 +78,7 @@ export default function Admin() {
         >
           CADASTRAR
         </button>
-        {userExists && <div data-testid="admin_manage__element-invalid-register" />}
+        {invalidRegister && <div data-testid="admin_manage__element-invalid-register" />}
       </form>
       <table>
         <thead>
