@@ -45,27 +45,30 @@ export default function ProductCard(
   };
 
   return (
-    <div className="products">
-      <div className="card-product">
+    <div className="card-product">
+      <p
+        className="product-price"
+        data-testid={ `customer_products__element-card-price-${id}` }
+      >
+        {`${JSON.stringify(`R$${price}`)
+          .replace('.', ',')
+          .replace('"', '')
+          .replace('"', '')}`}
+      </p>
+      <img
+        className="product-img"
+        data-testid={ `customer_products__img-card-bg-image-${id}` }
+        src={ urlImage }
+        alt="product"
+      />
+      <div className="card-tag">
         <p
-          className="product-price"
-          data-testid={ `customer_products__element-card-price-${id}` }
+          className="product-title"
+          data-testid={ `customer_products__element-card-title-${id}` }
         >
-          {`${JSON.stringify(price).replace('.', ',')}`}
+          {name}
         </p>
-        <img
-          className="product-img"
-          data-testid={ `customer_products__img-card-bg-image-${id}` }
-          src={ urlImage }
-          alt="product"
-        />
-        <div className="card-tag">
-          <p
-            className="product-title"
-            data-testid={ `customer_products__element-card-title-${id}` }
-          >
-            {name}
-          </p>
+        <div className="control">
           <button
             className="minus-button"
             data-testid={ `customer_products__button-card-rm-item-${id}` }
@@ -90,7 +93,6 @@ export default function ProductCard(
           >
             +
           </button>
-          <div />
         </div>
       </div>
     </div>

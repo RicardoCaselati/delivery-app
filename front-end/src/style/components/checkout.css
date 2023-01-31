@@ -1,8 +1,10 @@
 .checkout {
-  background-color: #036b52;
+  background-color: #421981;
+  bottom: 2rem;
   color: #f2fffc;
   font-size: 36px;
   font-weight: 800;
-  height: 79px;
-  width: 445px;
+  padding: 15px;
+  position: fixed;
+  right: 2rem;
 }

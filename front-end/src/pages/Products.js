@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Products from '../components/Products';
 import Checkout from '../components/Checkout';
 import Header from '../components/Header';
+import '../style/pages/products.css';
 
 export default function ProductsPage() {
   const [products, setProducts] = useState();
@@ -37,24 +38,28 @@ export default function ProductsPage() {
   }, [cartProducts]);
 
   return (
-    <div>
-      <Header name={ userName } />
-      {products && products.map(
-        ({ id, name, price, urlImage }) => (
-          <div key={ id }>
-            <Products
-              id={ id }
-              name={ name }
-              price={ price }
-              urlImage={ urlImage }
-              totalPrice={ totalPrice }
-              setTotalPrice={ setTotalPrice }
-              cartProducts={ cartProducts }
-              setCartProducts={ setCartProducts }
-            />
-          </div>
-        ),
-      )}
+    <div className="products-body">
+      <div>
+        <Header name={ userName } />
+      </div>
+      <div className="main">
+        {products && products.map(
+          ({ id, name, price, urlImage }) => (
+            <div key={ id }>
+              <Products
+                id={ id }
+                name={ name }
+                price={ price }
+                urlImage={ urlImage }
+                totalPrice={ totalPrice }
+                setTotalPrice={ setTotalPrice }
+                cartProducts={ cartProducts }
+                setCartProducts={ setCartProducts }
+              />
+            </div>
+          ),
+        )}
+      </div>
       <Checkout totalPrice={ totalPrice } />
     </div>
   );
