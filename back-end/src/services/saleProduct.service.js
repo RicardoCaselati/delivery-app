@@ -11,7 +11,7 @@ const createSaleProduct = async (cart, saleId) => {
         });
       });
       // await Promise.all(result);
-      console.log(result);
+      console.log(result); 
       // console.log(test);
     // } catch (error) {
     //   console.log(error);
