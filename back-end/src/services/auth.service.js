@@ -30,7 +30,7 @@ const validateLogin = async ({ email, password }) => {
     const { password: _, ...userWithoutPassword } = userNotPassword;
     const token = jwtUtil.createToken(userWithoutPassword);
 
-    return { name: user.name, email: user.email, role: user.role, token };
+    return { id: user.id, name: user.name, email: user.email, role: user.role, token };
 };
 
 module.exports = { validateBody, validateLogin };
