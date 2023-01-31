@@ -18,7 +18,9 @@ const checkIfExists = async ({ name, email }) => {
 
 const newUser = async ({ name, email, password }) => {
   const newPassword = md5(password);
-  await User.create({id, name, email, password: newPassword });
+  await User.create({
+    // id,
+    name, email, password: newPassword });
 };
 
 module.exports = {
