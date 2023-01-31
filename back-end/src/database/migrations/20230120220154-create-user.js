@@ -9,16 +9,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING, allowNull: false
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING, allowNull: false, unique: true
       },
       password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING, allowNull: false
       },
       role: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING, allowNull: false
       },
       createdAt: {
         allowNull: false,
@@ -28,11 +28,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    },{
-      underscored: true,
     });
   },
-  async down(queryInterface, Sequelize) {
+
+  async down(queryInterface, _Sequelize) {
     await queryInterface.dropTable('users');
   }
 };

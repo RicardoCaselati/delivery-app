@@ -8,7 +8,7 @@ export default function CheckoutP() {
   const [totalPrice, setTotalPrice] = useState(0);
   // const [sellerId,setSellerId] = useState('');
   const [deliveryAddress, setDeliveryAddress] = useState('');
-  const [DeliveryNumber, setDeliveryNumber] = useState('');
+  const [deliveryNumber, setDeliveryNumber] = useState('');
   const [sellers, setSellers] = useState([]);
   const [sellerName, setSellerName] = useState('');
 
@@ -65,7 +65,7 @@ export default function CheckoutP() {
           totalPrice,
           cart,
           deliveryAddress,
-          DeliveryNumber,
+          deliveryNumber,
         }),
       },
     ).then((res2) => res2.json()).then((json) => {

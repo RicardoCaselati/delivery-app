@@ -8,40 +8,52 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      user_id: {
+      userId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        field: 'user_id',
         references: {
           model: 'users',
           key: 'id',
         }
       },
-      seller_id: {
+      sellerId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        field: 'seller_id',
         references: {
           model: 'users',
           key: 'id',
         }
       },
-      total_price: {
-        type: Sequelize.DECIMAL(4, 2),
+      totalPrice: {
+        type: Sequelize.DECIMAL(9, 2),
+        field: 'total_price',
+        allowNull: false
       },
-      delivery_address: {
+      deliveryAddress: {
         type: Sequelize.STRING,
+        field: 'delivery_address',
+        allowNull: false
       },
-      delivery_number: {
+      deliveryNumber: {
         type: Sequelize.STRING,
+        field: 'delivery_number',
+        allowNull: false
       },
-      sale_date: {
+      saleDate: {
         type: Sequelize.DATE,
+        field: 'sale_date',
+        allowNull: true
       },
-      status: {
-        type: Sequelize.STRING,
-      },
-    },{
-      underscored: true,
+      status: { type: Sequelize.STRING, allowNull: false },
     });
   },
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface, _Sequelize) {
     await queryInterface.dropTable('sales');
   }
 };
