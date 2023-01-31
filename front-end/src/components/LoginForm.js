@@ -33,8 +33,13 @@ export default function LoginForm() {
       return res.json();
     }).then((json) => {
       if (status === OK_CODE) {
-        localStorage.setItem('user', JSON.stringify(json));
-        navigate('/customer/products');
+        if (json.role === 'administrator') {
+          localStorage.setItem('admin', JSON.stringify(json));
+          navigate('/admin/manage');
+        } else if (json.role === 'customer') {
+          localStorage.setItem('user', JSON.stringify(json));
+          navigate('/customer/products');
+        }
       }
     });
   };
