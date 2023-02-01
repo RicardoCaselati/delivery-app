@@ -38,7 +38,7 @@ const getSalesBySellerId = async (id) => {
 };
 
 const getSalesProducts = async (saleId) => {
-  const products = await SaleProduct.findAll({ where: { saleId: saleId } });
+  const products = await SaleProduct.findAll({ where: { saleId } });
 
   const saleProducts = products.reduce(async (acc, curr) => {
     const product = await Product.findOne({ where: { id: curr.productId } });
@@ -49,14 +49,14 @@ const getSalesProducts = async (saleId) => {
         price: product.price,
         qty: curr.quantity,
         totalPrice: this.price * this.qty,
-      }
-    ]
+      },
+    ];
   }, []);
 
   // await Promise.all(saleProducts);
 
   return saleProducts;
-}
+};
 
 module.exports = {
   createSale,

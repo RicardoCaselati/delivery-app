@@ -27,7 +27,7 @@ const getSaleProducts = async (req, res) => {
   const saleProducts = await saleService.getSalesProducts(id);
 
   res.status(200).json(saleProducts);
-}
+};
 
 module.exports = {
   createSale,
