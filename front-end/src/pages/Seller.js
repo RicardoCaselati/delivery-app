@@ -10,6 +10,12 @@ export default function Seller() {
     fetch(`http://localhost:3001/sales/${sellerId}`).then((response) => response.json()).then((json) => setOrders(json));
   }, []);
 
+  const saveOrderInfo = (date, status, totalPrice) => {
+    localStorage.setItem('orderDate', JSON.stringify(date));
+    localStorage.setItem('orderStatus', status);
+    localStorage.setItem('orderPrice', JSON.stringify(totalPrice));
+  };
+
   return (
     <div>
       <header>
@@ -19,34 +25,39 @@ export default function Seller() {
       </header>
       <div>
         {orders.map((order, index) => (
-          <div key={ index }>
-            <Link
-              to={ `${order.id}` }
+          <Link
+            onClick={
+              () => saveOrderInfo(order.saleDate, order.status, order.totalPrice)
+            }
+            to={ `${order.id}` }
+            key={ index }
+          >
+            <div
               data-testid={ `seller_orders__element-order-id-${order.id}` }
             >
               {order.id}
-            </Link>
+            </div>
             <div
-              data-testid={ `seller_orders__element-delivery-status-${order.status}` }
+              data-testid={ `seller_orders__element-delivery-status-${order.id}` }
             >
               {order.status}
             </div>
             <div
-              data-testid={ `seller_orders__element-order-date-${order.date}` }
+              data-testid={ `seller_orders__element-order-date-${order.id}` }
             >
               {order.saleDate}
             </div>
             <div
-              data-testid={ `seller_orders__element-card-price-${order.price}` }
+              data-testid={ `seller_orders__element-card-price-${order.id}` }
             >
               {order.totalPrice}
             </div>
             <div
-              data-testid={ `seller_orders__element-card-address-${order.address}` }
+              data-testid={ `seller_orders__element-card-address-${order.id}` }
             >
               {`${order.deliveryAddress}, ${order.deliveryNumber}`}
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

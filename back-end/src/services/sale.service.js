@@ -1,4 +1,4 @@
-const { Sale, SaleProduct } = require('../database/models');
+const { Sale, SaleProduct, Product } = require('../database/models');
 const { saleStatus } = require('../utils/saleStatus.util');
 
 const createSaleProduct = async (saleId, productId, quantity) => {
@@ -37,7 +37,29 @@ const getSalesBySellerId = async (id) => {
   return sales;
 };
 
+const getSalesProducts = async (saleId) => {
+  const products = await SaleProduct.findAll({ where: { saleId: saleId } });
+
+  const saleProducts = products.reduce(async (acc, curr) => {
+    const product = await Product.findOne({ where: { id: curr.productId } });
+    return [
+      ...acc,
+      {
+        name: product.name,
+        price: product.price,
+        qty: curr.quantity,
+        totalPrice: this.price * this.qty,
+      }
+    ]
+  }, []);
+
+  // await Promise.all(saleProducts);
+
+  return saleProducts;
+}
+
 module.exports = {
   createSale,
   getSalesBySellerId,
+  getSalesProducts,
 };
