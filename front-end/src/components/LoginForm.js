@@ -39,6 +39,9 @@ export default function LoginForm() {
         } else if (json.role === 'customer') {
           localStorage.setItem('user', JSON.stringify(json));
           navigate('/customer/products');
+        } else if (json.role === 'seller') {
+          localStorage.setItem('seller', JSON.stringify(json));
+          navigate('/seller/orders');
         }
       }
     });

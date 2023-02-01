@@ -5,11 +5,23 @@ const createSale = async (req, res) => {
     const { userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, cart,
     } = req.body;
     const { type, message } = await saleService.createSale({
-      userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, cart });
+      userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, cart,
+    });
     res.status(type).json(message);
   } catch (error) {
     console.log(error);
   }
 };
 
-module.exports = { createSale };
+const getSalesBySellerId = async (req, res) => {
+  const { id } = req.params;
+
+  const sales = await saleService.getSalesBySellerId(id);
+
+  res.status(200).json(sales);
+};
+
+module.exports = {
+  createSale,
+  getSalesBySellerId,
+};
