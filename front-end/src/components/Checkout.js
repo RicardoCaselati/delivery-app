@@ -21,7 +21,7 @@ export default function Checkout({ totalPrice }) {
         <span
           data-testid="customer_products__checkout-bottom-value"
         >
-          {`${totalPrice.toFixed(2).replace('.', ',')}`}
+          {`Total: R$ ${totalPrice.toFixed(2).replace('.', ',')}`}
         </span>
       </button>
     </div>

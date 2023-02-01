@@ -11,15 +11,12 @@ export default function Header({ name }) {
     localStorage.removeItem('user');
   }
 
-  function routeToOrders() {
-    navigate('/customer/orders');
-  }
-
   return (
     <header className="header">
       <button
         type="button"
         className="item-1"
+        onClick={ () => navigate('/customer/products') }
         data-testid="customer_products__element-navbar-link-products"
       >
         PRODUTOS
@@ -27,7 +24,7 @@ export default function Header({ name }) {
       <button
         type="button"
         className="item-2"
-        onClick={ routeToOrders }
+        onClick={ () => navigate('/customer/orders') }
         data-testid="customer_products__element-navbar-link-orders"
       >
         MEUS PEDIDOS

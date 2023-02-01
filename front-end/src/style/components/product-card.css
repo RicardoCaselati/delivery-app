@@ -1,29 +1,67 @@
 .card-product {
-  border: 1px solid #001813;
-  height: 486px;
-  width: 378px;
+  align-items: center;
+  background-color: white;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  width: 250px;
 }
 
-.product-price {
-  background-color: #eaf1ef;
-  color: #001813;
-  font-weight: 800;
-  height: 63px;
-  width: 154px;
+.card-product img {
+  height: 10rem;
+  margin-bottom: 1.5rem;
+  width: 10rem;
 }
 
 .card-tag {
-  background-color: #b1c2be;
-  color: #001813;
-  text-align: center;
-}
-
-.plus-button, .minus-button {
   background-color: #036b52;
-  color: #f2fffc;
-  font-weight: 800;
+  border-radius: 0 0 5px 5px;
+  color: white;
+  margin: 0;
+  text-align: center;
+  width: 100%;
 }
 
-.products img {
-  width: 30%;
+.product-title {
+  margin: 0;
+  padding-top: 10px;
 }
+
+.minus-button, .plus-button {
+  background-color: #036b52;
+  border: 2px solid white;
+  border-radius: 100%;
+  color: white;
+  font-size: 30px;
+  margin: 15px 0;
+  padding: 0;
+  width: 38px;
+}
+
+.minus-button:hover, .plus-button:hover {
+  background-color: white;
+  color: #036b52;
+  transition: 0.2s;
+}
+
+.qtt-field {
+  background-color: #036b52;
+  border: none;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  width: 100px;
+}
+
+.qtt-field::-webkit-inner-spin-button {
+  display: none;
+}
+
+.control {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+

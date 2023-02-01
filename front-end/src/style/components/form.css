@@ -16,7 +16,14 @@
   width: 200px;
 }
 
-.login-form input, button, a {
+.login-form input, a {
+  border: none;
+  border-radius: 4px;
+  margin: 10px;
+  padding: 6px;
+}
+
+.login-form > button {
   border: none;
   border-radius: 4px;
   margin: 10px;

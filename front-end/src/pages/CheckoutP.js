@@ -50,10 +50,7 @@ export default function CheckoutP() {
     const { token } = JSON.parse(localStorage.getItem('user'));
     const userId = user.id;
     const sellerId = 2;
-    // if (user) {
-    //   fetch(`http://localhost:3001/login/validate/${user.token}`).then((res) => {
-    //     if (res.status === STATUS_ERROR_CODE) navigate('/login');
-    //     else {
+
     fetch(
       'http://localhost:3001/sales',
       {
@@ -73,15 +70,13 @@ export default function CheckoutP() {
         localStorage.setItem('orderId', json.message.id);
         localStorage.setItem('status', json.message.status);
         localStorage.setItem('saleDate', json.message.saleDate);
-        console.log(sellerName);
         localStorage.setItem('sellerName', sellerName);
-        console.log(json);
+
         navigate(`/customer/orders/${json.message.id}`);
       }
     });
-    //       }
-    //     }, []);
-    //   }
+
+    localStorage.removeItem('cart');
   };
 
   return (

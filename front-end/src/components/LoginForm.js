@@ -13,6 +13,10 @@ export default function LoginForm() {
   useEffect(() => {
     const pwdMinLength = 6;
 
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if (user?.token) navigate('/customer/products');
+
     if (password.length < pwdMinLength || !email.match(/\S+@\S+\.\S+/)) setInvalidLogin(true);
     else setInvalidLogin(false);
   }, [email, password]);
@@ -33,8 +37,13 @@ export default function LoginForm() {
       return res.json();
     }).then((json) => {
       if (status === OK_CODE) {
-        localStorage.setItem('user', JSON.stringify(json));
-        navigate('/customer/products');
+        if (json.role === 'administrator') {
+          localStorage.setItem('admin', JSON.stringify(json));
+          navigate('/admin/manage');
+        } else if (json.role === 'customer') {
+          localStorage.setItem('user', JSON.stringify(json));
+          navigate('/customer/products');
+        }
       }
     });
   };
