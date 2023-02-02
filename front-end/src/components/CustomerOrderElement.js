@@ -34,7 +34,7 @@ export default function CustomerOrdersElement() {
             {moment(`${order.saleDate}`).format('DD/MM/YYYY')}
           </p>
           <p data-testid={ `customer_orders__element-card-price-${order.id}` }>
-            {`${order.totalPrice}`}
+            {`${order.totalPrice.replace('.', ',')}`}
           </p>
         </button>
       ))}
