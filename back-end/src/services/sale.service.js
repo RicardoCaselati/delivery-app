@@ -1,6 +1,15 @@
 const { Sale, SaleProduct, Product } = require('../database/models');
 const { saleStatus } = require('../utils/saleStatus.util');
 
+const getByUserId = async (id) => {
+  try {
+    const result = await Sale.findAll({ where: { userId: id } });
+    return { type: null, message: result };
+  } catch (error) {
+    return { type: 500, message: 'Internal error' };
+  }
+};
+  
 const createSaleProduct = async (saleId, productId, quantity) => {
   const response = await SaleProduct.create({
     saleId,
@@ -62,4 +71,5 @@ module.exports = {
   createSale,
   getSalesBySellerId,
   getSalesProducts,
+  getByUserId,
 };

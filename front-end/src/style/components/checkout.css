@@ -1,6 +1,9 @@
 .checkout {
   background-color: #421981;
+  border: none;
+  border-radius: 8px;
   bottom: 2rem;
+  box-shadow: 6px 6px 3px rgba(0, 0, 0, 0.61);
   color: #f2fffc;
   font-size: 36px;
   font-weight: 800;

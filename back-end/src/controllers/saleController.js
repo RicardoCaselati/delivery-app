@@ -13,6 +13,12 @@ const createSale = async (req, res) => {
   }
 };
 
+const getByUserId = async (req, res) => {
+  const { id } = req.params;
+  const { type, message } = await saleService.getByUserId(id);
+  res.status(type || 200).json({ message });
+};
+
 const getSalesBySellerId = async (req, res) => {
   const { id } = req.params;
 
@@ -33,4 +39,5 @@ module.exports = {
   createSale,
   getSalesBySellerId,
   getSaleProducts,
+  getByUserId,
 };

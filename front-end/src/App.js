@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Products from './pages/Products';
 import CheckoutP from './pages/CheckoutP';
 import OrderDetails from './pages/OrderDetails';
+import CustomerOrders from './pages/CustomerOrders';
 import Admin from './pages/Admin';
 import Seller from './pages/Seller';
 import SellerOrderDetails from './pages/SellerOrderDetails';
@@ -20,6 +21,7 @@ function App() {
         <Route path="/register" element={ <Register /> } />
         <Route path="/customer/products" element={ <Products /> } />
         <Route path="/customer/checkout" element={ <CheckoutP /> } />
+        <Route path="/customer/orders" element={ <CustomerOrders /> } />
         <Route path="/customer/orders/:id" element={ <OrderDetails /> } />
         <Route path="/admin/manage" element={ <Admin /> } />
         <Route path="/seller/orders" element={ <Seller /> } />

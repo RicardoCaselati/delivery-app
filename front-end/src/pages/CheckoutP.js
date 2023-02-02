@@ -6,7 +6,6 @@ export default function CheckoutP() {
   const [username, setUsername] = useState('');
   const [products, setProducts] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  // const [sellerId,setSellerId] = useState('');
   const [deliveryAddress, setDeliveryAddress] = useState('');
   const [deliveryNumber, setDeliveryNumber] = useState('');
   const [sellers, setSellers] = useState([]);
@@ -50,10 +49,6 @@ export default function CheckoutP() {
     const { token } = JSON.parse(localStorage.getItem('user'));
     const userId = user.id;
     const sellerId = 2;
-    // if (user) {
-    //   fetch(`http://localhost:3001/login/validate/${user.token}`).then((res) => {
-    //     if (res.status === STATUS_ERROR_CODE) navigate('/login');
-    //     else {
     fetch(
       'http://localhost:3001/sales',
       {
@@ -78,9 +73,6 @@ export default function CheckoutP() {
         navigate(`/customer/orders/${json.id}`);
       }
     });
-    //       }
-    //     }, []);
-    //   }
   };
 
   return (

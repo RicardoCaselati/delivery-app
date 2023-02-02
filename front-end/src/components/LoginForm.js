@@ -13,6 +13,10 @@ export default function LoginForm() {
   useEffect(() => {
     const pwdMinLength = 6;
 
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if (user?.token) navigate('/customer/products');
+
     if (password.length < pwdMinLength || !email.match(/\S+@\S+\.\S+/)) setInvalidLogin(true);
     else setInvalidLogin(false);
   }, [email, password]);

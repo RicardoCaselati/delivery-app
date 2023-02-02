@@ -13,18 +13,22 @@ export default function Header({ name }) {
 
   return (
     <header className="header">
-      <div
+      <button
+        type="button"
         className="item-1"
+        onClick={ () => navigate('/customer/products') }
         data-testid="customer_products__element-navbar-link-products"
       >
         PRODUTOS
-      </div>
-      <div
+      </button>
+      <button
+        type="button"
         className="item-2"
+        onClick={ () => navigate('/customer/orders') }
         data-testid="customer_products__element-navbar-link-orders"
       >
         MEUS PEDIDOS
-      </div>
+      </button>
       <div
         className="item-3"
         data-testid="customer_products__element-navbar-link-orders"
