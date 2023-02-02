@@ -37,7 +37,7 @@ export default function SellerOrderDetails() {
       <div
         data-testid="seller_order_details__element-order-details-label-order-date"
       >
-        {new Date(orderDate).toLocaleDateString()}
+        {new Date(orderDate).toLocaleDateString('pt-BR')}
       </div>
       <div
         data-testid="seller_order_details__element-order-details-label-delivery-status"
