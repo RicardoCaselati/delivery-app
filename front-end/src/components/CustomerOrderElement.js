@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import moment from 'moment';
+import { useNavigate } from 'react-router-dom';
 import '../style/components/header.css';
 
 export default function CustomerOrdersElement() {
   const [info, setInfo] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const { id } = JSON.parse(localStorage.getItem('user'));
@@ -14,22 +18,26 @@ export default function CustomerOrdersElement() {
 
   return (
     <div>
-      { info.map((order) => (
-        <div key={ order }>
-          <p data-testid="customer_orders__element-order-id-<id>">
+      {info.map((order) => (
+        <button
+          type="button"
+          key={ order }
+          onClick={ () => navigate(`/customer/orders/${order.id}`) }
+        >
+          <p data-testid={ `customer_orders__element-order-id-${order.id}` }>
             {`pedido N°: ${order.id}`}
           </p>
-          <p data-testid="customer_orders__element-delivery-status-<id>">
+          <p data-testid={ `customer_orders__element-delivery-status-${order.id}` }>
             {`Status: ${order.status}`}
           </p>
-          <p data-testid="customer_orders__element-order-date-<id>">
-            {`data do pedido : ${order.saleDate}`}
+          <p data-testid={ `customer_orders__element-order-date-${order.id}` }>
+            {moment(`${order.saleDate}`).format('DD/MM/YYYY')}
           </p>
-          <p data-testid="customer_orders__element-card-price-<id>">
-            {`valor total: ${order.totalPrice}`}
+          <p data-testid={ `customer_orders__element-card-price-${order.id}` }>
+            {`${order.totalPrice}`}
           </p>
-        </div>
-      )) }
+        </button>
+      ))}
     </div>
 
   );

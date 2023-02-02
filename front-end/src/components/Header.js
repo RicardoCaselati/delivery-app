@@ -16,6 +16,7 @@ export default function Header({ name }) {
       <button
         type="button"
         className="item-1"
+        onClick={ () => navigate('/customer/products') }
         data-testid="customer_products__element-navbar-link-products"
       >
         PRODUTOS

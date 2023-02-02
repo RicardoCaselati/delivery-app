@@ -7,7 +7,7 @@ export default function Seller() {
   useEffect(() => {
     const sellerId = JSON.parse(localStorage.getItem('seller')).id;
 
-    fetch(`http://localhost:3001/sales/${sellerId}`).then((response) => response.json()).then((json) => setOrders(json));
+    fetch(`http://localhost:3001/sales/seller/${sellerId}`).then((response) => response.json()).then((json) => setOrders(json));
   }, []);
 
   const saveOrderInfo = (date, status, totalPrice) => {
