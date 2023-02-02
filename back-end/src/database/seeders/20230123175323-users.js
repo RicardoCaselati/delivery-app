@@ -7,8 +7,8 @@ module.exports = {
         password: 'a4c86edecc5aee06eff8fdeda69e0d04',
         role: 'administrator',
           // senha: md5('--adm2@21!!--')        
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        // createdAt: new Date(),
+        // updatedAt: new Date(),
       },
       {
         name: 'Fulana Pereira',
@@ -16,8 +16,8 @@ module.exports = {
         password: '3c28d2b0881bf46457a853e0b07531c6',
         role: 'seller',
           // senha: md5('fulana@123')       
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        // createdAt: new Date(),
+        // updatedAt: new Date(),
       },
       {
         name: 'Cliente Zé Birita',
@@ -25,8 +25,8 @@ module.exports = {
         password: '1c37466c159755ce1fa181bd247cb925',
         role: 'customer',
           // senha: md5('$#zebirita#$')
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        // createdAt: new Date(),
+        // updatedAt: new Date(),
       },
     ], {});
   },

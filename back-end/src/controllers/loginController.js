@@ -7,8 +7,8 @@ const newUser = async (req, res) => {
         return res.status(409).json({ message: 'Email or password already exist' });
     }
     if (checkIfExists.type === 200) {
-        await loginService.newUser({ name, email, password });
-        return res.status(201).json({ message: 'Successfully registered user' });
+        const { type, message } = await loginService.newUser({ name, email, password });
+        return res.status(type).json({ message });
     }
 };
 

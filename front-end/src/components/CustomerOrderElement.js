@@ -7,7 +7,7 @@ export default function CustomerOrdersElement() {
   useEffect(() => {
     const { id } = JSON.parse(localStorage.getItem('user'));
     fetch(
-      `http://localhost:3001/sales/${id}`,
+      `http://localhost:3001/sales/user/${id}`,
       { method: 'GET' },
     ).then((res2) => res2.json()).then((json) => setInfo(json.message));
   }, []);

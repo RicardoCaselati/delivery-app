@@ -1,27 +1,43 @@
 const saleService = require('../services/sale.service');
 
 const createSale = async (req, res) => {
-    const sale = {
-      userId: req.body.userId,
-      sellerId: req.body.sellerId,
-      totalPrice: req.body.totalPrice,
-      deliveryAddress: req.body.deliveryAddress,
-      deliveryNumber: req.body.deliveryNumber,
-      cart: req.body.cart,
-      saleDate: new Date(),
-    };
-
-    const saleCreated = await saleService.createSale(sale);
-    if (saleCreated.type === 500) {
-        return res.status(500).json(saleCreated.message);
-    }
-    res.status(201).json({ message: saleCreated.message });
+  try {
+    const { userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, cart,
+    } = req.body;
+    const { type, message } = await saleService.createSale({
+      userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, cart,
+    });
+    res.status(type).json(message);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-const getById = async (req, res) => {
+const getByUserId = async (req, res) => {
   const { id } = req.params;
-  const { type, message } = await saleService.getById(id);
+  const { type, message } = await saleService.getByUserId(id);
   res.status(type || 200).json({ message });
 };
 
-module.exports = { createSale, getById };
+const getSalesBySellerId = async (req, res) => {
+  const { id } = req.params;
+
+  const sales = await saleService.getSalesBySellerId(id);
+
+  res.status(200).json(sales);
+};
+
+const getSaleProducts = async (req, res) => {
+  const { id } = req.params;
+
+  const saleProducts = await saleService.getSalesProducts(id);
+
+  res.status(200).json(saleProducts);
+};
+
+module.exports = {
+  createSale,
+  getSalesBySellerId,
+  getSaleProducts,
+  getByUserId,
+};
