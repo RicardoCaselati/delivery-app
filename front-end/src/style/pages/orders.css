@@ -1,0 +1,63 @@
+.orders-content {
+  align-items: center;
+  background-color: rgb(63, 61, 61);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.orders-section {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  width: 80%;
+}
+
+.button-to-order {
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  font-size: 30px;
+  height: 6.5rem;
+  justify-content: center;
+  margin: 8px;
+  width: 48%;
+}
+
+.data-field {
+  display: flex;
+  flex-direction: column;
+  width: 31%;
+}
+
+.order-id {
+  align-items: center;
+  background-color: rgb(168, 168, 168);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6rem;
+  height: 78px;
+  justify-content: center;
+  margin-left: 5px;
+  margin-right: 20px;
+  width: 25%;
+}
+
+.order-status {
+  align-items: center;
+  background-color: rgb(236, 137, 66);
+  border-radius: 5px;
+  display: flex;
+  height: 78px;
+  justify-content: center;
+  margin-right: 16px;
+  width: 33%;
+}
+
+.info-p {
+  background-color: rgb(168, 168, 168);
+  border-radius: 5px;
+  margin: 5px;
+}

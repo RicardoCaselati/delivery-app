@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
+import '../style/pages/checkout.css';
 
 export default function CheckoutP() {
   const [username, setUsername] = useState('');
@@ -76,10 +77,11 @@ export default function CheckoutP() {
   };
 
   return (
-    <div>
+    <div className="page-content">
       <Header name={ username } />
-      <table>
-        <thead>
+      <h1 className="title">Finalizar pedido</h1>
+      <table className="table-body">
+        <thead className="table-items">
           <tr>
             <th>Item</th>
             <th>Descrição</th>
@@ -91,7 +93,7 @@ export default function CheckoutP() {
         </thead>
         <tbody>
           {products.map((product, index) => (
-            <tr key={ product.id }>
+            <tr key={ product.id } className="table-line">
               <td
                 data-testid={
                   `customer_checkout__element-order-table-item-number-${index}`
@@ -129,6 +131,7 @@ export default function CheckoutP() {
               </td>
               <td>
                 <button
+                  className="remove-btn"
                   data-testid={
                     `customer_checkout__element-order-table-remove-${index}`
                   }
@@ -143,34 +146,50 @@ export default function CheckoutP() {
         </tbody>
       </table>
       <div
+        className="total-value"
         data-testid="customer_checkout__element-order-total-price"
       >
-        {`${totalPrice.toFixed(2).replace('.', ',')}`}
+        {`Valor total: R$${totalPrice.toFixed(2).replace('.', ',')}`}
       </div>
-      <div>
+      <div className="details-body">
         <h1>Detalhes da entrega</h1>
-        <select
-          aria-label="seller"
-          data-testid="customer_checkout__select-seller"
-          onChange={ ({ target }) => setSellerName(target.value) }
-        >
-          {sellers.map((eachSeller, index) => (
-            <option
-              key={ index }
-              value={ eachSeller.name }
+        <div className="order-inputs">
+          <div className="order-info">
+            <p>Vendedor(a):</p>
+            <select
+              className="seller-input info"
+              aria-label="seller"
+              data-testid="customer_checkout__select-seller"
+              onChange={ ({ target }) => setSellerName(target.value) }
             >
-              {eachSeller.name}
-            </option>))}
-        </select>
-        <input
-          data-testid="customer_checkout__input-address"
-          onChange={ ({ target }) => setDeliveryAddress(target.value) }
-        />
-        <input
-          data-testid="customer_checkout__input-address-number"
-          onChange={ ({ target }) => setDeliveryNumber(target.value) }
-        />
+              {sellers.map((eachSeller, index) => (
+                <option
+                  key={ index }
+                  value={ eachSeller.name }
+                >
+                  {eachSeller.name}
+                </option>))}
+            </select>
+          </div>
+          <div className="order-info">
+            <p>Endereço:</p>
+            <input
+              className="info"
+              data-testid="customer_checkout__input-address"
+              onChange={ ({ target }) => setDeliveryAddress(target.value) }
+            />
+          </div>
+          <div className="order-info">
+            <p>Número:</p>
+            <input
+              className="info"
+              data-testid="customer_checkout__input-address-number"
+              onChange={ ({ target }) => setDeliveryNumber(target.value) }
+            />
+          </div>
+        </div>
         <button
+          className="checkout-btn"
           type="button"
           data-testid="customer_checkout__button-submit-order"
           onClick={ () => handleCheckout() }

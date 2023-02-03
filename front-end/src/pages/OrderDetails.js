@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import Header from '../components/Header';
 import SaleCart from '../components/SaleCart';
+import '../style/pages/orderDetails.css';
 
 const prefix = 'customer_order_details__';
 
@@ -17,18 +18,18 @@ export default function OrderDetailsById() {
       setOrder(json.message);
     });
   }, [setOrder]);
-  // console.log(order);
   const [sale] = order;
 
   return (
-    <div>
+    <div className="details-page-content">
       <Header />
-      <h2>
-        Detalhe do pedido
-      </h2>
+      <h1 className="details-title">
+        Detalhes do pedido
+      </h1>
       {sale && (
-        <div>
-          <div>
+        <div className="details-info">
+
+          <div className="details-header">
             <p data-testid={ `${prefix}element-order-details-label-order-id` }>
               PEDIDO:
               {' '}
@@ -50,6 +51,7 @@ export default function OrderDetailsById() {
               {sale.status}
             </p>
             <button
+              className="delivered-btn"
               data-testid={ `${prefix}button-delivery-check` }
               type="button"
               disabled
@@ -57,19 +59,11 @@ export default function OrderDetailsById() {
               Marcar como entregue
             </button>
           </div>
-          <div>
-            {/* {sale && sale.map(
-              ({ id, name, price, urlImage }) => (
-                <div key={ id }> */}
-            <SaleCart
-              cart={ sale.products }
-            />
-            {/* </div>
-              ),
-            )} */}
-          </div>
+          <SaleCart
+            cart={ sale.products }
+          />
           <p data-testid={ `${prefix}element-order-total-price` }>
-            {sale.totalPrice.replace('.', ',')}
+            {`Total: R$${sale.totalPrice.replace('.', ',')}`}
           </p>
         </div>
       )}

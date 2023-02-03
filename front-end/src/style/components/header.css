@@ -53,6 +53,7 @@
   align-items: center;
   background-color: #036b52;
   display: flex;
+  font-size: 20px;
   font-weight: 800;
   height: 105px;
   justify-content: center;
@@ -64,6 +65,7 @@
   background-color: #421981;
   color: #f2fffc;
   display: flex;
+  font-size: 1rem;
   font-weight: 800;
   height: 105px;
   justify-content: center;

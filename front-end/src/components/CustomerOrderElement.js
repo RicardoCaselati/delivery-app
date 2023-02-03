@@ -17,25 +17,41 @@ export default function CustomerOrdersElement() {
   }, []);
 
   return (
-    <div>
+    <div className="orders-section">
       {info.map((order) => (
         <button
+          className="button-to-order"
           type="button"
-          key={ order }
+          key={ order.id }
           onClick={ () => navigate(`/customer/orders/${order.id}`) }
         >
-          <p data-testid={ `customer_orders__element-order-id-${order.id}` }>
-            {`pedido N°: ${order.id}`}
+          <p
+            className="order-id"
+            data-testid={ `customer_orders__element-order-id-${order.id}` }
+          >
+            <p>Pedido</p>
+            {`${order.id}`}
           </p>
-          <p data-testid={ `customer_orders__element-delivery-status-${order.id}` }>
-            {`Status: ${order.status}`}
+          <p
+            className="order-status"
+            data-testid={ `customer_orders__element-delivery-status-${order.id}` }
+          >
+            {`${order.status}`}
           </p>
-          <p data-testid={ `customer_orders__element-order-date-${order.id}` }>
-            {moment(`${order.saleDate}`).format('DD/MM/YYYY')}
-          </p>
-          <p data-testid={ `customer_orders__element-card-price-${order.id}` }>
-            {`${order.totalPrice.replace('.', ',')}`}
-          </p>
+          <div className="data-field">
+            <p
+              className="info-p"
+              data-testid={ `customer_orders__element-order-date-${order.id}` }
+            >
+              {moment(`${order.saleDate}`).format('DD/MM/YYYY')}
+            </p>
+            <p
+              className="info-p"
+              data-testid={ `customer_orders__element-card-price-${order.id}` }
+            >
+              {`R$ ${order.totalPrice.replace('.', ',')}`}
+            </p>
+          </div>
         </button>
       ))}
     </div>
